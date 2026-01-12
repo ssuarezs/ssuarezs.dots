@@ -1,9 +1,5 @@
-# Taps
-tap "homebrew/bundle"
-# En Linux, las fuentes se manejan diferente, pero dejamos el tap por si acaso
-tap "homebrew/cask-fonts" if OS.mac?
+tap "jandedobbeleer/oh-my-posh"
 
-# --- CORE (Común en ambos) ---
 brew "zsh"
 brew "git"
 brew "stow"
@@ -19,7 +15,7 @@ brew "eza"
 brew "bat"
 brew "jq"
 brew "lazygit"
-brew "jandedobbeleer/oh-my-posh/oh-my-posh"
+brew "oh-my-posh"
 
 # Plugins Zsh (Común)
 brew "zsh-completions"
@@ -29,13 +25,12 @@ brew "zsh-syntax-highlighting"
 # --- SOLO MACOS (Casks & Apps Gráficas) ---
 if OS.mac?
     cask "alacritty"
+    # Las fuentes ahora se instalan directamente como casks normales
     cask "font-iosevka-nerd-font"
     cask "docker"
 end
 
-# --- SOLO LINUX (Equivalentes si existen en brew core) ---
+# --- SOLO LINUX ---
 if OS.linux?
-    # En Linux, Alacritty y Docker suelen instalarse mejor con apt/dnf/pacman
-    # pero podemos intentar instalarlos si están en las fórmulas de linuxbrew
-    brew "gcc" # A veces necesario para compilar nvim plugins
+    brew "gcc"
 end

@@ -1,8 +1,20 @@
-# --- 1. Configuración de Homebrew ---
-# Esto asegura que zsh encuentre los binarios en Apple Silicon
-if [[ -f /opt/homebrew/bin/brew ]]; then
+# --- 1. Configuración de Homebrew (Universal) ---
+# Detectar dónde está Homebrew y cargarlo
+if [[ -f "/opt/homebrew/bin/brew" ]]; then
+    # macOS Apple Silicon
     eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+    # Linux Default
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+elif [[ -f "/usr/local/bin/brew" ]]; then
+    # macOS Intel / Linux antiguo
+    eval "$(/usr/local/bin/brew shellenv)"
+else
+    echo "⚠️  Homebrew no encontrado. Revisa tu instalación."
 fi
+
+# Añadir rutas locales (para herramientas instaladas manualmente si las hubiera)
+export PATH="$HOME/.local/bin:$PATH"
 
 # --- 2. Variables Globales ---
 export EDITOR='nvim'
