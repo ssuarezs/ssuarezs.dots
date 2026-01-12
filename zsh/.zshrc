@@ -104,3 +104,7 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [[ ! $TERM_PROGRAM =~ "vsco
     # Si falla (||), crea una nueva sesión llamada 'main'
     tmux attach -t main || tmux new -s main
 fi
+
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

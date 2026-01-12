@@ -17,6 +17,7 @@ This repository manages my dotfiles using **GNU Stow** and **Homebrew**, ensurin
 
 - **Node.js** (via `fnm`)
 - **Python** (via `uv`)
+- **JavaScript/TypeScript** (via `bun`)
 
 ### Utilities
 
@@ -85,3 +86,4 @@ chmod +x install.sh
 This project is licensed under the **MIT License**.
 
 You are free to use, modify, and distribute this software.
+
