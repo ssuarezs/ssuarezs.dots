@@ -1,0 +1,48 @@
+# --- Archivos de Sistema (macOS / Linux) ---
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+Desktop.ini
+
+# --- Archivos Temporales de Editores ---
+# Vim / Neovim swaps
+*.swp
+*.swo
+*.swn
+# VS Code / JetBrains (si abres el repo con ellos)
+.vscode/
+.idea/
+
+# --- Backups y Archivos Viejos ---
+# Estos son los que creamos o renombramos al instalar
+*.bak
+*.old
+*.orig
+*.tmp
+
+# --- Historial y Logs (¡Nunca subir esto!) ---
+.zsh_history
+.bash_history
+.history
+*.log
+
+# --- Secretos y Llaves ---
+# Aunque no deberían estar en esta carpeta, es mejor prevenir
+.env
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+known_hosts
+secrets.sh
+tokens.txt
+
+# --- Neovim (LazyVim) ---
+# Ignorar cache o datos de sesión locales
+nvim/.config/nvim/.lazy-status.json
+# NOTA: SÍ queremos subir 'lazy-lock.json' para mantener versiones de plugins
+
+# --- Zsh ---
+# Si alguna vez compilas zsh (raro, pero pasa)
+zsh/*.zwc
