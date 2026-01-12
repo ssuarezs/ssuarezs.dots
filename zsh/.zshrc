@@ -39,7 +39,7 @@ eval "$(zoxide init zsh)"
 # --- 5. Apariencia (Oh My Posh) ---
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   # Usa un tema por defecto o cambia la ruta a tu archivo .omp.json propio
-  eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/kushal.omp.json)"
+  eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin_mocha.omp.json)"
 fi
 
 # --- 6. Plugins Avanzados (Desde Homebrew) ---
@@ -94,3 +94,13 @@ alias reload="source ~/.zshrc"
 # Usar 'fd' para alimentar a fzf (respeta .gitignore y es más rápido)
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# --- Auto-Start Tmux ---
+# 1. Verifica si tmux existe
+# 2. Verifica que NO estemos ya dentro de una sesión ($TMUX debe estar vacío)
+# 3. Verifica que NO estemos en la terminal integrada de VS Code o IntelliJ (opcional pero recomendado)
+if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [[ ! $TERM_PROGRAM =~ "vscode" ]]; then
+    # Intenta conectarse a una sesión llamada 'main'
+    # Si falla (||), crea una nueva sesión llamada 'main'
+    tmux attach -t main || tmux new -s main
+fi
