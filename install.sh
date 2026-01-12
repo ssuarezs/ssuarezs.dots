@@ -1,92 +1,83 @@
 #!/bin/bash
 
-# Definir colores para los logs
-GREEN='\033[0;32m'
+# Detectar Sistema Operativo
+OS="$(uname -s)"
+echo "🖥️  Sistema detectado: $OS"
+
+# Colores
 BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+GREEN='\033[0;32m'
+NC='\033[0m'
 
-echo -e "${BLUE}🚀 Iniciando Setup de Entorno de Desarrollo...${NC}"
-
-# --- 1. Instalar Homebrew ---
+# --- 1. Instalar Homebrew (Cross-platform logic) ---
 if ! command -v brew &> /dev/null; then
     echo -e "${BLUE}🍺 Instalando Homebrew...${NC}"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     
-    # Agregar al path para la sesión actual (Apple Silicon)
-    if [[ -f /opt/homebrew/bin/brew ]]; then
+    # Configurar PATH dinámicamente según OS
+    if [ "$OS" = "Darwin" ]; then
+        # macOS Apple Silicon
         eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [ "$OS" = "Linux" ]; then
+        # Linux estándar
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     fi
 else
     echo -e "${GREEN}✅ Homebrew ya está instalado.${NC}"
 fi
 
-# --- 2. Instalar Paquetes (Brewfile) ---
-echo -e "${BLUE}📦 Instalando paquetes desde Brewfile...${NC}"
+# --- 2. Brew Bundle ---
+echo -e "${BLUE}📦 Instalando paquetes...${NC}"
 brew bundle --file=./homebrew/Brewfile
 
-# --- 3. Instalar Oh My Zsh ---
+# --- 3. Oh My Zsh & Stow (Igual que antes) ---
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo -e "${BLUE}⚡ Instalando Oh My Zsh...${NC}"
-    # --unattended evita que el script se detenga pidiendo confirmación
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    
-    # BORRAR el .zshrc que crea el instalador automáticamente
-    # para que no choque con el nuestro al usar Stow
     rm -f ~/.zshrc
-else
-    echo -e "${GREEN}✅ Oh My Zsh ya está instalado.${NC}"
 fi
 
-# --- 4. GNU Stow (Enlazar Dotfiles) ---
-echo -e "${BLUE}🔗 Enlazando configuraciones con Stow...${NC}"
+echo -e "${BLUE}🔗 Ejecutando Stow...${NC}"
+mkdir -p ~/.config/alacritty ~/.config/ohmyposh
+stow --restow zsh nvim alacritty tmux git
 
-# Crear carpetas base necesarias si no existen
-mkdir -p ~/.config
-mkdir -p ~/.config/alacritty
-mkdir -p ~/.config/ohmyposh
-
-# Ejecutar Stow para cada paquete
-# --restow: actualiza enlaces si ya existen
-stow --restow zsh
-stow --restow nvim
-stow --restow alacritty
-stow --restow tmux
-stow --restow git
-
-# --- 5. Instalar Tmux Plugin Manager (TPM) ---
-if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-    echo -e "${BLUE}🔌 Instalando Tmux Plugin Manager...${NC}"
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-else
-    echo -e "${GREEN}✅ TPM ya está instalado.${NC}"
-fi
-
-# --- 6. Configurar Shell por defecto (Zsh de Brew) ---
+# --- 4. Configurar Shell (Rutas Dinámicas) ---
+# Obtener la ruta real de zsh instalado por brew
 BREW_ZSH="$(brew --prefix)/bin/zsh"
 
-if grep -Fxq "$BREW_ZSH" /etc/shells; then
-    echo -e "${GREEN}✅ Zsh de Homebrew ya está en /etc/shells${NC}"
-else
-    echo -e "${BLUE}🔒 Agregando Zsh de Homebrew a /etc/shells (requiere sudo)...${NC}"
+if ! grep -Fxq "$BREW_ZSH" /etc/shells; then
+    echo -e "${BLUE}🔒 Agregando Zsh a /etc/shells...${NC}"
     echo "$BREW_ZSH" | sudo tee -a /etc/shells
 fi
 
 if [ "$SHELL" != "$BREW_ZSH" ]; then
-    echo -e "${BLUE}🔄 Cambiando Shell por defecto a Zsh de Homebrew...${NC}"
     chsh -s "$BREW_ZSH"
 fi
 
-# --- 6. Configurar Runtimes ---
-echo -e "${BLUE}🐍 Inicializando Python y Node...${NC}"
-# Instalar Node LTS
+# --- 5. Runtimes ---
 fnm install --lts
-# Instalar Python estable
 uv python install
 
-# --- 7. Configuración de macOS ---
-if [ -f "./macos/defaults.sh" ]; then
-    echo -e "${BLUE}🍎 Aplicando configuraciones de macOS...${NC}"
-    source ./macos/defaults.sh
+# --- 6. Pasos Específicos por OS ---
+if [ "$OS" = "Darwin" ]; then
+    # Solo ejecutar defaults en Mac
+    if [ -f "./macos/defaults.sh" ]; then
+        echo -e "${BLUE}🍎 Aplicando defaults de macOS...${NC}"
+        source ./macos/defaults.sh
+    fi
+    
+    # Instalar TPM (Tmux Plugin Manager)
+    if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    fi
+
+elif [ "$OS" = "Linux" ]; then
+    echo -e "${BLUE}🐧 Configuración Linux...${NC}"
+    echo "⚠️  Nota: En Linux debes instalar Alacritty y las Fuentes manualmente o con apt/pacman, ya que Brew Cask no existe aquí."
+    
+    # También instalamos TPM en Linux
+    if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    fi
 fi
 
-echo -e "${GREEN}✨ ¡Instalación completada con éxito! Reinicia tu terminal o cierra sesión.${NC}"
+echo -e "${GREEN}✨ ¡Instalación Finalizada!${NC}"
