@@ -21,8 +21,8 @@ option_as_alt = "Both"
 padding = { x = 4, y = 4 }
 dynamic_padding = true
 
-# startup_mode = "Maximized"
-# decorations = "none"
+startup_mode = "Maximized"
+decorations = "none"
 
 
 # ┌──────────────────────────────────────────────────────────────────────────────┐
