@@ -1,28 +1,37 @@
-# Taps (Repositorios de terceros)
+# Taps (Fuentes de paquetes)
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts" # Necesario para las Nerd Fonts
+tap "homebrew/cask-fonts"
 
-# Binarios (Runtimes y Herramientas CLI)
+# --- SHELL & CORE ---
+brew "zsh"                      # Tu shell principal actualizada
 brew "git"
-brew "stow"             # El gestor de dotfiles
-brew "fnm"              # Node manager
-brew "uv"               # Python manager
+brew "stow"                     # Gestor de dotfiles
+
+# --- RUNTIMES & LENGUAJES ---
+brew "fnm"                      # Node.js manager (Rápido)
+brew "uv"                       # Python manager (Rápido)
+
+# --- EDITORES & TERMINAL ---
 brew "neovim"
 brew "tmux"
-brew "ripgrep"          # Necesario para Telescope (nvim)
-brew "fd"
-brew "fzf"
-brew "zoxide"
-brew "eza"              # ls moderno
-brew "bat"
-brew "jq"
-brew "lazygit"
 brew "jandedobbeleer/oh-my-posh/oh-my-posh"
 
-# Aplicaciones GUI (Casks)
-cask "alacritty"
-cask "font-iosevka-nerd-font" # Tu fuente Iosevka Term (versión Nerd Font)
-cask "docker"           # Casi siempre necesario para Ingeniería de SW
+# --- UTILIDADES "MODERN UNIX" ---
+brew "ripgrep"                  # Buscador de texto (grep rápido)
+brew "fd"                       # Buscador de archivos (find rápido)
+brew "fzf"                      # Buscador difuso
+brew "zoxide"                   # Navegación inteligente (cd rápido)
+brew "eza"                      # Listado de archivos (ls moderno)
+brew "bat"                      # Visor de archivos (cat con alas)
+brew "jq"                       # Procesador de JSON
+brew "lazygit"                  # Cliente de Git para terminal
 
-# Mas App Store (Opcional, si usas apps de la tienda como Xcode)
-# mas "Xcode", id: 497799835
+# --- ZSH PLUGINS (Instalados via Brew para limpieza) ---
+brew "zsh-completions"          # Autocompletado extra (Docker, Git avanzado, etc)
+brew "zsh-autosuggestions"      # Sugerencias grises mientras escribes
+brew "zsh-syntax-highlighting"  # Colores en los comandos
+
+# --- APLICACIONES GUI (Casks) ---
+cask "alacritty"
+cask "font-iosevka-nerd-font"   # Tu fuente elegida
+cask "docker"
