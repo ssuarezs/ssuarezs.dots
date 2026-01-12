@@ -10,7 +10,7 @@ This repository manages my dotfiles using **GNU Stow** and **Homebrew**, ensurin
 
 - **Shell**: Zsh + Oh My Posh
 - **Editor**: Neovim (LazyVim-based)
-- **Terminal**: Alacritty + Tmux
+- **Terminal**: Alacritty/Wezterm + Tmux
 - **Package Manager**: Homebrew
 
 ### Runtimes
@@ -71,6 +71,8 @@ chmod +x install.sh
 │   └── .tmux.conf      # Tmux configuration + TPM
 ├── alacritty/
 │   └── .config/        # Alacritty configuration (TOML)
+├── wezterm/
+│   └── .config/        # Wezterm configuration (LUA)
 └── git/
     ├── .gitconfig      # Git identity and aliases
     └── .gitignore_global

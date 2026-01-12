@@ -24,8 +24,8 @@ brew "zsh-syntax-highlighting"
 
 # --- SOLO MACOS (Casks & Apps Gráficas) ---
 if OS.mac?
+    cask "wezterm"
     cask "alacritty"
-    # Las fuentes ahora se instalan directamente como casks normales
     cask "font-iosevka-nerd-font"
     cask "docker"
 end
