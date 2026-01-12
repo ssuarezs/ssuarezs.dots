@@ -53,7 +53,15 @@ stow --restow alacritty
 stow --restow tmux
 stow --restow git
 
-# --- 5. Configurar Shell por defecto (Zsh de Brew) ---
+# --- 5. Instalar Tmux Plugin Manager (TPM) ---
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    echo -e "${BLUE}🔌 Instalando Tmux Plugin Manager...${NC}"
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+else
+    echo -e "${GREEN}✅ TPM ya está instalado.${NC}"
+fi
+
+# --- 6. Configurar Shell por defecto (Zsh de Brew) ---
 BREW_ZSH="$(brew --prefix)/bin/zsh"
 
 if grep -Fxq "$BREW_ZSH" /etc/shells; then
