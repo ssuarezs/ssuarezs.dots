@@ -1,0 +1,28 @@
+# Taps (Repositorios de terceros)
+tap "homebrew/bundle"
+tap "homebrew/cask-fonts" # Necesario para las Nerd Fonts
+
+# Binarios (Runtimes y Herramientas CLI)
+brew "git"
+brew "stow"             # El gestor de dotfiles
+brew "fnm"              # Node manager
+brew "uv"               # Python manager
+brew "neovim"
+brew "tmux"
+brew "ripgrep"          # Necesario para Telescope (nvim)
+brew "fd"
+brew "fzf"
+brew "zoxide"
+brew "eza"              # ls moderno
+brew "bat"
+brew "jq"
+brew "lazygit"
+brew "jandedobbeleer/oh-my-posh/oh-my-posh"
+
+# Aplicaciones GUI (Casks)
+cask "alacritty"
+cask "font-iosevka-nerd-font" # Tu fuente Iosevka Term (versión Nerd Font)
+cask "docker"           # Casi siempre necesario para Ingeniería de SW
+
+# Mas App Store (Opcional, si usas apps de la tienda como Xcode)
+# mas "Xcode", id: 497799835
