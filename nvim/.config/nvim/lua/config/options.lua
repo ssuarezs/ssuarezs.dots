@@ -1,7 +1,3 @@
 -- Options are automatically loaded before lazy.nvim startup
--- Default options: https://www.lazyvim.org/configuration/general
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
--- Ejemplo: Habilitar números relativos
-vim.opt.relativenumber = true
+-- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+-- Add any additional options here
