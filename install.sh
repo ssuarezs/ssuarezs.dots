@@ -38,7 +38,7 @@ fi
 
 echo -e "${BLUE}🔗 Ejecutando Stow...${NC}"
 mkdir -p ~/.config/alacritty ~/.config/ohmyposh
-stow --restow zsh nvim alacritty tmux git
+stow --restow zsh nvim alacritty tmux git wezterm
 
 # --- 4. Configurar Shell (Rutas Dinámicas) ---
 # Obtener la ruta real de zsh instalado por brew
@@ -85,4 +85,3 @@ elif [ "$OS" = "Linux" ]; then
 fi
 
 echo -e "${GREEN}✨ ¡Instalación Finalizada!${NC}"
-
