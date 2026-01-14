@@ -99,16 +99,12 @@ alias reload="source ~/.zshrc"
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# --- Auto-Start Tmux ---
-# 1. Verifica si tmux existe
-# 2. Verifica que NO estemos ya dentro de una sesión ($TMUX debe estar vacío)
-# 3. Verifica que NO estemos en la terminal integrada de VS Code o IntelliJ (opcional pero recomendado)
-if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [[ ! $TERM_PROGRAM =~ "vscode" ]]; then
-    # Intenta conectarse a una sesión llamada 'main'
-    # Si falla (||), crea una nueva sesión llamada 'main'
-    tmux attach -t main || tmux new -s main
-fi
+# opencode
+export PATH=/Users/ssuarezs/.opencode/bin:$PATH
 
 # Bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun completions
+[ -s "/Users/ssuarezs/.bun/_bun" ] && source "/Users/ssuarezs/.bun/_bun"
