@@ -46,6 +46,10 @@ fi
 # IMPORTANTE: zsh-completions debe agregarse al fpath ANTES de compinit
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  chmod go-w "$(brew --prefix)/share"
+  chmod go-w "$(brew --prefix)/share/zsh"
+  chmod go-w "$(brew --prefix)/share/zsh/site-functions"
 fi
 
 # Inicializar sistema de autocompletado

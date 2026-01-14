@@ -1,5 +1,4 @@
 tap "jandedobbeleer/oh-my-posh"
-tap "oven-sh/bun"
 
 brew "zsh"
 brew "git"
@@ -17,7 +16,6 @@ brew "bat"
 brew "jq"
 brew "lazygit"
 brew "oh-my-posh"
-brew "bun"
 
 # Plugins Zsh (Común)
 brew "zsh-completions"
@@ -27,9 +25,9 @@ brew "zsh-syntax-highlighting"
 # --- SOLO MACOS (Casks & Apps Gráficas) ---
 if OS.mac?
     cask "wezterm"
-    cask "alacritty"
     cask "font-iosevka-nerd-font"
-    cask "docker"
+    cask "font-iosevka-term-nerd-font"
+    cask "docker-desktop"
 end
 
 # --- SOLO LINUX ---
