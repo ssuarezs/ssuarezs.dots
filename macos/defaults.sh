@@ -18,10 +18,11 @@ defaults write com.apple.finder ShowPathbar -bool true
 # --- Dock ---
 # Ocultar automáticamente
 defaults write com.apple.dock autohide -bool true
+# No mostrar aplicaciones recientes en el Dock
+defaults write com.apple.dock show-recents -bool false
 # Hacerlo más pequeño
-defaults write com.apple.dock tilesize -int 42
+defaults write com.apple.dock tilesize -int 46
 
 # Reiniciar servicios afectados
 killall Finder
 killall Dock
-
