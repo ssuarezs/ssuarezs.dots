@@ -10,7 +10,7 @@ local config = {}
 -- └──────────────────────────────────────────────────────────────────────────────┘
 
 config.font = wezterm.font("IosevkaTerm NF")
-config.font_size = 14.0
+config.font_size = 16.0
 
 -- ┌──────────────────────────────────────────────────────────────────────────────┐
 -- │                                  WINDOW                                      │
@@ -109,4 +109,3 @@ config.colors = {
 }
 
 return config
-
