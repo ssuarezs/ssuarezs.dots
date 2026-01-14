@@ -2,6 +2,7 @@ tap "jandedobbeleer/oh-my-posh"
 
 brew "zsh"
 brew "git"
+brew "git-delta"
 brew "stow"
 brew "fnm"
 brew "uv"
@@ -25,6 +26,7 @@ brew "zsh-syntax-highlighting"
 # --- SOLO MACOS (Casks & Apps Gráficas) ---
 if OS.mac?
     cask "wezterm"
+    cask "ghostty"
     cask "font-iosevka-nerd-font"
     cask "font-iosevka-term-nerd-font"
     cask "docker-desktop"
