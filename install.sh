@@ -84,4 +84,34 @@ elif [ "$OS" = "Linux" ]; then
   fi
 fi
 
+setup_macos_keys() {
+  if [[ "$(uname)" == "Darwin" ]]; then
+    echo "Configurando mapeo Caps Lock -> Control desde archivos del repo..."
+
+    local PLIST_NAME="com.user.capslocktocontrol.plist"
+    local TARGET_DIR="$HOME/Library/LaunchAgents"
+    local SOURCE_PATH="macos/$PLIST_NAME"
+
+    mkdir -p "$TARGET_DIR"
+
+    if [ -f "$SOURCE_PATH" ]; then
+      cp "$SOURCE_PATH" "$TARGET_DIR/$PLIST_NAME"
+      chmod 644 "$TARGET_DIR/$PLIST_NAME"
+    else
+      echo "Error: No se encontró $SOURCE_PATH"
+      return 1
+    fi
+
+    launchctl bootout gui/$(id -u) "$TARGET_DIR/$PLIST_NAME" 2>/dev/null
+
+    if launchctl bootstrap gui/$(id -u) "$TARGET_DIR/$PLIST_NAME"; then
+      echo "✓ Mapeo de teclas cargado correctamente."
+    else
+      echo "⚠️ Falló la carga del agente, pero el archivo fue copiado. Se activará tras reiniciar."
+    fi
+  fi
+}
+
+setup_macos_keys
+
 echo -e "${GREEN}✨ ¡Instalación Finalizada!${NC}"
