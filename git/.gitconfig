@@ -1,0 +1,37 @@
+[user]
+    name = ssuarezs
+    email = suarez.santiago.113@gmail.com
+    # signingkey = (Optional: your GPG key would go here if you sign commits)
+
+[core]
+    editor = nvim
+    pager = delta # If you install 'delta' (a nice pager), or use 'less' by default
+    ignorecase = false
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true # Avoids unnecessary merge commits when pulling
+
+[push]
+    autoSetupRemote = true # Avoids 'upstream not set' error
+
+[alias]
+    # Basic shortcuts (even if you use LazyGit, these save lives)
+    s = status
+    c = commit -m
+    co = checkout
+    br = branch
+    l = log --oneline --graph --decorate --all
+    unstage = reset HEAD --
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
+# A global gitignore is good practice to avoid uploading .DS_Store
+[core]
+    excludesfile = ~/.gitignore_global

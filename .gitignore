@@ -1,0 +1,48 @@
+# --- System Files (macOS / Linux) ---
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+Desktop.ini
+
+# --- Editor Temporary Files ---
+# Vim / Neovim swaps
+*.swp
+*.swo
+*.swn
+# VS Code / JetBrains (if you open the repo with them)
+.vscode/
+.idea/
+
+# --- Backups and Old Files ---
+# These are created or renamed during installation
+*.bak
+*.old
+*.orig
+*.tmp
+
+# --- History and Logs (Never commit this!) ---
+.zsh_history
+.bash_history
+.history
+*.log
+
+# --- Secrets and Keys ---
+# These shouldn't be in this folder, but better safe than sorry
+.env
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+known_hosts
+secrets.sh
+tokens.txt
+
+# --- Neovim (LazyVim) ---
+# Ignore cache or local session data
+nvim/.config/nvim/.lazy-status.json
+# NOTE: We DO want to commit 'lazy-lock.json' to maintain plugin versions
+
+# --- Zsh ---
+# If you ever compile zsh (rare, but it happens)
+zsh/*.zwc

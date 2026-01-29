@@ -1,0 +1,38 @@
+tap "jandedobbeleer/oh-my-posh"
+
+brew "zsh"
+brew "git"
+brew "git-delta"
+brew "stow"
+brew "fnm"
+brew "uv"
+brew "neovim"
+brew "tmux"
+brew "ripgrep"
+brew "fd"
+brew "fzf"
+brew "zoxide"
+brew "eza"
+brew "bat"
+brew "jq"
+brew "lazygit"
+brew "oh-my-posh"
+
+# Zsh Plugins (Common)
+brew "zsh-completions"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
+
+# --- MACOS ONLY (Casks & GUI Apps) ---
+if OS.mac?
+    cask "wezterm"
+    cask "ghostty"
+    cask "font-iosevka-nerd-font"
+    cask "font-iosevka-term-nerd-font"
+    cask "docker-desktop"
+end
+
+# --- LINUX ONLY ---
+if OS.linux?
+    brew "gcc"
+end
