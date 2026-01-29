@@ -10,7 +10,7 @@ This repository manages my dotfiles using **GNU Stow** and **Homebrew**, ensurin
 
 - **Shell**: Zsh + Oh My Posh
 - **Editor**: Neovim (LazyVim-based)
-- **Terminal**: Alacritty/Wezterm + Tmux
+- **Terminal**: Alacritty/Wezterm/Ghostty + Tmux
 - **Package Manager**: Homebrew
 
 ### Runtimes
