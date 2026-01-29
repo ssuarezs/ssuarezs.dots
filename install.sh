@@ -62,25 +62,6 @@ if command -v bun &>/dev/null; then
 fi
 
 # --- 6. OS-Specific Steps ---
-if [ "$OS" = "Darwin" ]; then
-  # Only run defaults on Mac
-  if [ -f "./macos/defaults.sh" ]; then
-    echo -e "${BLUE}🍎 Applying macOS defaults...${NC}"
-    source ./macos/defaults.sh
-  fi
-
-  # Setup macOS key mappings
-  setup_macos_keys
-
-elif [ "$OS" = "Linux" ]; then
-  echo -e "${BLUE}🐧 Linux configuration...${NC}"
-  echo "⚠️  Note: On Linux you must install Alacritty and Fonts manually or with apt/pacman, since Brew Cask doesn't exist here."
-fi
-
-# Install TPM (Tmux Plugin Manager) - Common for both OS
-if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
 
 setup_macos_keys() {
   if [[ "$(uname)" == "Darwin" ]]; then
@@ -109,5 +90,25 @@ setup_macos_keys() {
     fi
   fi
 }
+
+if [ "$OS" = "Darwin" ]; then
+  # Only run defaults on Mac
+  if [ -f "./macos/defaults.sh" ]; then
+    echo -e "${BLUE}🍎 Applying macOS defaults...${NC}"
+    source ./macos/defaults.sh
+  fi
+
+  # Setup macOS key mappings
+  setup_macos_keys
+
+elif [ "$OS" = "Linux" ]; then
+  echo -e "${BLUE}🐧 Linux configuration...${NC}"
+  echo "⚠️  Note: On Linux you must install Alacritty and Fonts manually or with apt/pacman, since Brew Cask doesn't exist here."
+fi
+
+# Install TPM (Tmux Plugin Manager) - Common for both OS
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
 echo -e "${GREEN}✨ Installation Complete!${NC}"
