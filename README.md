@@ -1,8 +1,10 @@
 # ssuarezs.dots
 
-High-performance development environment configuration, optimized for **macOS (Apple Silicon)** and **Linux**.
+High-performance development environment configuration,
+optimized for **macOS (Apple Silicon)** and **Linux**.
 
-This repository manages my dotfiles using **GNU Stow** and **Homebrew**, ensuring a **reproducible**, **stable**, and easy-to-maintain setup.
+This repository manages my dotfiles using **GNU Stow** and **Homebrew**,
+ensuring a **reproducible**, **stable**, and easy-to-maintain setup.
 
 ---
 
@@ -41,7 +43,8 @@ cd ~/dotfiles
 
 ### 2️⃣ Run the bootstrapper
 
-This script detects your operating system (macOS or Linux), installs missing dependencies, and symlinks configuration files using GNU Stow.
+This script detects your operating system (macOS or Linux), installs missing
+dependencies, and symlinks configuration files using GNU Stow.
 
 ```bash
 chmod +x install.sh
