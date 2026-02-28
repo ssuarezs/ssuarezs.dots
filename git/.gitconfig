@@ -35,3 +35,4 @@
 # A global gitignore is good practice to avoid uploading .DS_Store
 [core]
     excludesfile = ~/.gitignore_global
+	autocrlf = input

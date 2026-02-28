@@ -38,7 +38,7 @@ fi
 
 echo -e "${BLUE}🔗 Running Stow...${NC}"
 mkdir -p ~/.config/alacritty ~/.config/ohmyposh
-stow --restow zsh nvim alacritty tmux git wezterm ghostty
+stow --restow zsh nvim alacritty tmux git wezterm ghostty yabai skhd
 
 # --- 4. Configure Shell (Dynamic Paths) ---
 # Get the real path of zsh installed by brew
@@ -109,6 +109,19 @@ fi
 # Install TPM (Tmux Plugin Manager) - Common for both OS
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
+# --- 7. Start yabai and skhd services (macOS only) ---
+if [ "$OS" = "Darwin" ]; then
+  if command -v yabai &>/dev/null; then
+    echo -e "${BLUE}🪟 Starting yabai service...${NC}"
+    yabai --start-service
+  fi
+
+  if command -v skhd &>/dev/null; then
+    echo -e "${BLUE}⌨️  Starting skhd service...${NC}"
+    skhd --start-service
+  fi
 fi
 
 echo -e "${GREEN}✨ Installation Complete!${NC}"

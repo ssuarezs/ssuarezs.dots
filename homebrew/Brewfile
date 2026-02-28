@@ -1,5 +1,3 @@
-tap "jandedobbeleer/oh-my-posh"
-
 brew "zsh"
 brew "git"
 brew "git-delta"
@@ -16,7 +14,9 @@ brew "eza"
 brew "bat"
 brew "jq"
 brew "lazygit"
-brew "oh-my-posh"
+brew "jandedobbeleer/oh-my-posh/oh-my-posh"
+brew "koekeishiya/formulae/yabai"
+brew "koekeishiya/formulae/skhd"
 
 # Zsh Plugins (Common)
 brew "zsh-completions"
