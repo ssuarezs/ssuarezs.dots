@@ -30,6 +30,7 @@ if OS.mac?
     cask "font-iosevka-nerd-font"
     cask "font-iosevka-term-nerd-font"
     cask "docker-desktop"
+    cask "karabiner-elements"
 end
 
 # --- LINUX ONLY ---
