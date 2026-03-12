@@ -38,7 +38,7 @@ fi
 
 echo -e "${BLUE}🔗 Running Stow...${NC}"
 mkdir -p ~/.config/alacritty ~/.config/ohmyposh
-stow --restow zsh nvim alacritty tmux git wezterm ghostty yabai skhd
+stow --adopt --restow zsh nvim alacritty tmux git wezterm ghostty yabai skhd karabiner
 
 # --- 4. Configure Shell (Dynamic Paths) ---
 # Get the real path of zsh installed by brew
@@ -63,34 +63,6 @@ fi
 
 # --- 6. OS-Specific Steps ---
 
-setup_macos_keys() {
-  if [[ "$(uname)" == "Darwin" ]]; then
-    echo "Configuring Caps Lock -> Control mapping from repo files..."
-
-    local PLIST_NAME="com.user.capslocktocontrol.plist"
-    local TARGET_DIR="$HOME/Library/LaunchAgents"
-    local SOURCE_PATH="macos/$PLIST_NAME"
-
-    mkdir -p "$TARGET_DIR"
-
-    if [ -f "$SOURCE_PATH" ]; then
-      cp "$SOURCE_PATH" "$TARGET_DIR/$PLIST_NAME"
-      chmod 644 "$TARGET_DIR/$PLIST_NAME"
-    else
-      echo "Error: $SOURCE_PATH not found"
-      return 1
-    fi
-
-    launchctl bootout gui/$(id -u) "$TARGET_DIR/$PLIST_NAME" 2>/dev/null
-
-    if launchctl bootstrap gui/$(id -u) "$TARGET_DIR/$PLIST_NAME"; then
-      echo "✓ Key mapping loaded successfully."
-    else
-      echo "⚠️ Agent loading failed, but file was copied. It will activate after restart."
-    fi
-  fi
-}
-
 if [ "$OS" = "Darwin" ]; then
   # Only run defaults on Mac
   if [ -f "./macos/defaults.sh" ]; then
@@ -98,8 +70,11 @@ if [ "$OS" = "Darwin" ]; then
     source ./macos/defaults.sh
   fi
 
-  # Setup macOS key mappings
-  setup_macos_keys
+  # Start skhd services (macOS only)
+  if command -v skhd &>/dev/null; then
+    echo -e "${BLUE}⌨️  Starting skhd service...${NC}"
+    skhd --start-service
+  fi
 
 elif [ "$OS" = "Linux" ]; then
   echo -e "${BLUE}🐧 Linux configuration...${NC}"
@@ -109,19 +84,6 @@ fi
 # Install TPM (Tmux Plugin Manager) - Common for both OS
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-
-# --- 7. Start yabai and skhd services (macOS only) ---
-if [ "$OS" = "Darwin" ]; then
-  if command -v yabai &>/dev/null; then
-    echo -e "${BLUE}🪟 Starting yabai service...${NC}"
-    yabai --start-service
-  fi
-
-  if command -v skhd &>/dev/null; then
-    echo -e "${BLUE}⌨️  Starting skhd service...${NC}"
-    skhd --start-service
-  fi
 fi
 
 echo -e "${GREEN}✨ Installation Complete!${NC}"
