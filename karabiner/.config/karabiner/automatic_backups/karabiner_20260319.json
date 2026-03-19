@@ -90,11 +90,11 @@
                         ]
                     },
                     {
-                        "description": "Hyper Key: Right Command → left shift + left option + left command (⌃⇧⌥⌘)",
+                        "description": "Hyper Key: Right Option → left shift + left option + left command (⌃⇧⌥⌘)",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "right_command",
+                                    "key_code": "right_option",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
