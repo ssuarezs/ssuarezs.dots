@@ -38,7 +38,7 @@ fi
 
 echo -e "${BLUE}🔗 Running Stow...${NC}"
 mkdir -p ~/.config/alacritty ~/.config/ohmyposh
-stow --adopt --restow zsh nvim alacritty tmux git wezterm ghostty yabai skhd karabiner
+stow --adopt --restow zsh nvim alacritty tmux git wezterm ghostty karabiner
 
 # --- 4. Configure Shell (Dynamic Paths) ---
 # Get the real path of zsh installed by brew
@@ -68,12 +68,6 @@ if [ "$OS" = "Darwin" ]; then
   if [ -f "./macos/defaults.sh" ]; then
     echo -e "${BLUE}🍎 Applying macOS defaults...${NC}"
     source ./macos/defaults.sh
-  fi
-
-  # Start skhd services (macOS only)
-  if command -v skhd &>/dev/null; then
-    echo -e "${BLUE}⌨️  Starting skhd service...${NC}"
-    skhd --start-service
   fi
 
 elif [ "$OS" = "Linux" ]; then

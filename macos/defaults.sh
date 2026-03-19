@@ -23,19 +23,6 @@ defaults write com.apple.dock show-recents -bool false
 # Make it smaller
 defaults write com.apple.dock tilesize -int 46
 
-# --- Accessibility (required for yabai scripting additions and skhd) ---
-# Grant accessibility permissions to yabai and skhd via tccutil
-# Note: This requires SIP to be partially disabled for yabai scripting addition.
-# These commands reset the TCC database entry so macOS prompts for re-approval,
-# or silently approves on headless/CI runs. On interactive installs, approve
-# the prompt in System Settings > Privacy & Security > Accessibility.
-if command -v yabai &>/dev/null; then
-  tccutil reset Accessibility com.koekeishiya.yabai 2>/dev/null || true
-fi
-if command -v skhd &>/dev/null; then
-  tccutil reset Accessibility com.koekeishiya.skhd 2>/dev/null || true
-fi
-
 # Restart affected services
 killall Finder
 killall Dock

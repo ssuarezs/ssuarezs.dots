@@ -15,8 +15,6 @@ brew "bat"
 brew "jq"
 brew "lazygit"
 brew "jandedobbeleer/oh-my-posh/oh-my-posh"
-brew "koekeishiya/formulae/yabai"
-brew "koekeishiya/formulae/skhd"
 
 # Zsh Plugins (Common)
 brew "zsh-completions"
@@ -31,6 +29,7 @@ if OS.mac?
     cask "font-iosevka-term-nerd-font"
     cask "docker-desktop"
     cask "karabiner-elements"
+    cask "raycast"
 end
 
 # --- LINUX ONLY ---
