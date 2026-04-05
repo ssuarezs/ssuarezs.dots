@@ -6,17 +6,17 @@
 font-family = IosevkaTerm NF
 font-size = 18
 
-
 # ┌──────────────────────────────────────────────────────────────────────────────┐
 # │                                  WINDOW                                      │
 # └──────────────────────────────────────────────────────────────────────────────┘
 
-background-opacity = 0.95
+background-opacity = 0.8
 background-blur-radius = 20
 
 window-padding-color = extend
 window-step-resize = false
 window-padding-balance = true
+macos-titlebar-style = hidden
 
 gtk-tabs-location = hidden
 
@@ -32,32 +32,19 @@ custom-shader = cursor_smear.glsl
 
 # macOS Alt key fix
 macos-option-as-alt = left
-keybind = alt+left=unbind
-keybind = alt+right=unbind
-
-# Split Management
-keybind = alt+v=new_split:right
-keybind = alt+d=new_split:down
-
-# Split Navigation
-keybind = alt+k=goto_split:up
-keybind = alt+j=goto_split:down
-keybind = alt+h=goto_split:left
-keybind = alt+l=goto_split:right
-
-# Split Resize
-keybind = ctrl+shift+j=resize_split:up,10
-keybind = ctrl+shift+k=resize_split:down,10
-keybind = ctrl+shift+h=resize_split:left,10
-keybind = ctrl+shift+l=resize_split:right,10
-
-# Miscellaneous
-keybind = cmd+k=clear_screen
-keybind = shift+enter=text:\x1b\r
-
-# Open file with nvim (write 'nvim' first, then use this keybinding)
-keybind = alt+s=write_screen_file:paste
-
+keybind = ctrl+t=unbind
+keybind = ctrl+n=unbind
+keybind = ctrl+w=unbind
+keybind = ctrl+shift+w=unbind
+keybind = ctrl+tab=unbind
+keybind = ctrl+shift+tab=unbind
+keybind = cmd+t=unbind
+keybind = cmd+n=unbind
+keybind = cmd+w=unbind
+keybind = cmd+enter=unbind
+keybind = cmd+d=unbind
+keybind = cmd+shift+d=unbind
+keybind = cmd+k=unbind
 
 # ┌─────────────────────────────────────────────────────────────────────┐
 # │                            THEME                                    │
