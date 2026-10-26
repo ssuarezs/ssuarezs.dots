@@ -87,22 +87,47 @@ alias gc="git commit -m"
 alias v="nvim"
 alias vim="nvim"
 
+# Docker
+alias dcu='docker compose up -d'
+alias dcub='docker compose up -d --build'
+alias dcd='docker compose down'
+alias dcdv='docker compose down -v'
+
+# Claude Code
+alias cc='claude'
+
+# Open Code
+alias oc='opencode'
+
+# Tmux
+alias tx='tmux'
+
 # Config Reload
 alias reload="source ~/.zshrc"
 
-# --- 9. FZF (Finder) ---
+
+# --- 9. Export Settings ---
+
+# FZF (Finder)
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-# --- Auto-Start Tmux ---
-if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [[ ! $TERM_PROGRAM =~ "vscode" ]]; then
-    tmux attach -t main || tmux new -s main
-fi
-
 
 # Bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-
-# Bun completions
 [ -s "/Users/ssuarezs/.bun/_bun" ] && source "/Users/ssuarezs/.bun/_bun"
+
+# opencode
+export PATH=/Users/ssuarezs/.opencode/bin:$PATH
+
+# .NET SDK
+export DOTNET_ROOT="$HOME/.dotnet"
+export PATH="$DOTNET_ROOT:$DOTNET_ROOT/tools:$PATH"
+
+
+# --- 10. Auto-Start ---
+
+# Tmux
+if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [[ ! $TERM_PROGRAM =~ "zed" ]]&& [[ ! $TERM_PROGRAM =~ "vscode" ]]; then
+    tmux attach -t main || tmux new -s main
+fi

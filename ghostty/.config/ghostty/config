@@ -32,6 +32,9 @@ custom-shader = cursor_smear.glsl
 
 # macOS Alt key fix
 macos-option-as-alt = left
+
+keybind = shift+enter=text:\x1b\r
+
 keybind = ctrl+t=unbind
 keybind = ctrl+n=unbind
 keybind = ctrl+w=unbind

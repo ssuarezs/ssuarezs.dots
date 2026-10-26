@@ -5,6 +5,10 @@
 Thumbs.db
 Desktop.ini
 
+# --- Claude Code
+CLAUDE.md
+.claude/
+
 # --- Editor Temporary Files ---
 # Vim / Neovim swaps
 *.swp
